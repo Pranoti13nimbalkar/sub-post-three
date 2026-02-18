@@ -1,0 +1,48 @@
+
+<mat-card>
+    <mat-card-content>
+        <h2 class="text-danger">{{isInEditMode? 'Update Player' : 'Add Player'}}</h2>
+        <form [formGroup]="PostForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="playerName">Player Name*</label>
+                <input type="text" class="form-control" formControlName="playerName">
+                <strong  class="text-danger" *ngIf="formControls['playerName'].touched && formControls['playerName'].hasError('required')">
+                    This field is Mandatory!!!
+                </strong>
+            </div>
+            <div class="form-group">
+                <label for="playerInfo">Player Info*</label>
+                <input type="text" class="form-control" formControlName="playerInfo">
+                    <strong  class="text-danger" *ngIf="formControls['playerInfo'].touched && formControls['playerInfo'].hasError('required')">
+                    This field is Mandatory!!!
+                </strong>
+            </div>
+            <div class="form-group">
+                <label for="sportType">Sport Type*</label>
+                <input type="text" class="form-control" formControlName="sportType">
+                    <strong  class="text-danger" *ngIf="formControls['sportType'].touched && formControls['sportType'].hasError('required')">
+                    This field is Mandatory!!!
+                </strong>
+            </div>
+            <div class="form-group">
+                <label for="country">Country Name*</label>
+                <input type="text" class="form-control" formControlName="country">
+                    <strong  class="text-danger" *ngIf="formControls['country'].touched && formControls['country'].hasError('required')">
+                    This field is Mandatory!!!
+                </strong>
+            </div>
+            <div class="form-group">
+                <label for="isActivePlayer">IsActivePlayer*</label>
+                <select formControlName="isActivePlayer" id="isActivePlayer" class="form-control">
+                    <option [ngValue]="true">Active</option>
+                    <option [ngValue]="false">InActive</option>
+                </select>
+                    <strong  class="text-danger" *ngIf="formControls['isActivePlayer'].touched && formControls['isActivePlayer'].hasError('required')">
+                  Please Select the option!!!
+                </strong>
+            </div>
+            <button mat-raised-button class="w-100" *ngIf="!isInEditMode" color="primary">Add Player</button>
+            <button type="button" mat-raised-button class="w-100" (click)="onUpdate()" *ngIf="isInEditMode" color="primary">Update Player</button>
+        </form>
+    </mat-card-content>
+</mat-card>
